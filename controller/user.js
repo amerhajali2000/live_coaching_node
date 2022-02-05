@@ -1,6 +1,7 @@
 const User=require('../model/User')
 const secret=require('../config/dataconfig').secret
 const jwt= require('jsonwebtoken');
+const Bcrypt=require('bcrypt')
 
 var functionU={
     register: function(req,res){
