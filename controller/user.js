@@ -1,37 +1,43 @@
 const User=require('../model/User')
 const secret=require('../config/dataconfig').secret
+const jwt= require('jsonwebtoken');
 
 var functionU={
     register: async(req,res)=>{
-        User.findOne({email:req.body.email},function(err,user){
-            if(err){
-                res.json({secssus:false,msg:err})
-            }else if(user){
-                res.json({secssus:false,msg:'هذا الحساب مسجل من قبل'})
-            }else{
-             user =new User({
-                name:req.body.name,
-                email:req.body.email,
-                phone:req.body.phone,
-                password:req.body.password
-            }).save(function(err){
-                 if(err){
-                    res.json({secssus:false,msg:err})
-                 }else{
-                    const token = jwt.sign(
-                        {
-                            name:req.body.name,
-                            email:req.body.name,
-                            phone:req.body.phone
-                        },
-                        secret
-                        )
-                    res.json({secssus:true,msg:'تم تسجيل الحساب', token:token})
-                 }
-    
-             })
-            }
-        })
+        try {
+            User.findOne({email:req.body.email},function(err,user){
+                if(err){
+                    res.json({secssus:false,msg:err.message})
+                }else if(user){
+                    res.json({secssus:false,msg:'هذا الحساب مسجل من قبل'})
+                }else{
+                 user =new User({
+                    name:req.body.name,
+                    email:req.body.email,
+                    phone:req.body.phone,
+                    password:req.body.password
+                }).save(function(err){
+                     if(err){
+                        res.json({secssus:false,msg:err.message})
+                     }else{
+                        const token = jwt.sign(
+                            {
+                                name:req.body.name,
+                                email:req.body.name,
+                                phone:req.body.phone
+                            },
+                            secret
+                            )
+                        res.json({secssus:true,msg:'تم تسجيل الحساب', token:token})
+                     }
+        
+                 })
+                }
+            })  
+        } catch (error) {
+            res.json(error.message)
+        }
+        
      },
      login:function(req,res){
         User.findOne({email:req.body.email},function(err,user){
