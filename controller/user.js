@@ -4,7 +4,6 @@ const jwt= require('jsonwebtoken');
 
 var functionU={
     register: async(req,res)=>{
-        try {
             User.findOne({email:req.body.email},function(err,user){
                 if(err){
                     res.json({secssus:false,msg:err.message})
@@ -34,9 +33,7 @@ var functionU={
                  })
                 }
             })  
-        } catch (error) {
-            res.json(error.message)
-        }
+        
         
      },
      login:function(req,res){
