@@ -1,7 +1,7 @@
 const User=require('../model/User')
 const secret=require('../config/dataconfig').secret
 const jwt= require('jsonwebtoken');
-const Bcrypt=require('bcrypt')
+// const Bcrypt=require('bcrypt')
 
 var functionU={
     register: function(req,res){
@@ -43,7 +43,7 @@ var functionU={
                 res.status(500).send({secssus:false,msg:err})
             }else if(!user){
                res.json({secssus:false,msg:'الحساب غير مسجل من قبل أو البريد الإلكتروني غير صالح'})
-            }else if(!Bcrypt.compareSync(req.body.password,user.password)){
+            }else if(!req.body.password==user.password){
                res.json({secssus:false,msg:'كلمة المرور غير صحيحة'})
             }
             else{
