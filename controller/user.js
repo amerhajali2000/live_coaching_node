@@ -3,7 +3,7 @@ const secret=require('../config/dataconfig').secret
 const jwt= require('jsonwebtoken');
 
 var functionU={
-    register: async(req,res)=>{
+    register: function(req,res){
             User.findOne({email:req.body.email},function(err,user){
                 if(err){
                     res.json({secssus:false,msg:err.message})

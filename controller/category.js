@@ -36,7 +36,7 @@ var functionCategory={
             res.json(error.message)
         }
     },
-    displayCategory:async(req,res)=>{
+    displayCategory:function(req,res){
         Category.find().exec(function(err,result) {
             if(err){
                 res.json({seccuss:false, msg:err.message})
