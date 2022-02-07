@@ -21,7 +21,7 @@ var functiond={
                 if(err){
                     res.json({seccuss:false, msg:err.message})
                 }else{
-                    Category.findOneAndUpdate({_id:req.body.id},{$push:{data:data._id}}).exec()
+                    Category.findOneAndUpdate({_id:req.body.category},{$push:{data:data._id}}).exec()
                     res.json({seccuss:true, result})
                 }
             })    
