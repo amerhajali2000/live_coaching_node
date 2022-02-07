@@ -1,6 +1,5 @@
 const Category=require('../model/Category')
 const cloudinary=require('../helpers/cloudinary')
-const fs=require('fs-extra')
 
 var functionCategory={
     addCategory:async(req,res)=>{
