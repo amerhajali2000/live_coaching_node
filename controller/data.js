@@ -2,7 +2,7 @@ const Data= require("../model/Data")
 const cloudinary=require("../helpers/cloudinary")
 
 var functiond={
-    addData:function(req,res){
+    addData:async(req,res)=>{
         try {
             const result= await cloudinary.uploader.upload(req.file.path)
             const data=new Data({
