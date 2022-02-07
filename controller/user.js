@@ -28,7 +28,7 @@ var functionU={
                             },
                             secret
                             )
-                        res.json({secssus:true,msg:'تم تسجيل الحساب', token:token})
+                        res.json({secssus:true,msg:'تم تسجيل الحساب', token:token, id:user._id})
                      }
         
                  })

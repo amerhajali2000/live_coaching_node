@@ -5,6 +5,7 @@ const cors= require('cors');
 const connectdb= require('./config/db');
 const user=require('./routers/user')
 const category=require('./routers/category')
+const data=require("./routers/data")
 
 connectdb();
 
@@ -17,6 +18,7 @@ app.use(morgan('tiny'));
 
 app.use(user);
 app.use(express.static('upload'), category);
+app.use(express.static('upload'), data)
 
 app.get("/" ,function(req,res){
     res.send("API is Running ")

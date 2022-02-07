@@ -7,7 +7,7 @@ var functionCategory={
         const result= await cloudinary.uploader.upload(req.file.path)
         const category=new Category({
             name:req.body.name,
-            image:result.url,
+            image:result.secure_url,
             imageId:result.public_id
         })
         category.save(function(err) {

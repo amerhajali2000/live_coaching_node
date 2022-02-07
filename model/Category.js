@@ -7,9 +7,18 @@ const CategorySchema =  mongoose.Schema({
     },
     image:{
         type: String,
+        dafault:""
     },
     imageId:{
         type:String
+    },
+    data:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"data"
+    }],
+    location:{
+        latitude:Number,
+        longitude:Number
     }
 })
 
