@@ -18,10 +18,21 @@ const DataSchema =  mongoose.Schema({
         url:String,
         cvId:String
     },
+    dates:[{
+        type:String
+    }],
     category:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"category"
-    }
+    },
+    bookings:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"booking"
+    },
+    // location:{
+    //     latitude:Number,
+    //     longitude:Number
+    // }
 })
 
 

@@ -15,7 +15,8 @@ var functiond={
                     cvId:result.public_id
                 },
                 description:req.body.description,
-                category:req.body.category
+                category:req.body.category,
+                dates:req.body.dates
             })
             data.save(function(err,result) {
                 if(err){

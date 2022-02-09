@@ -1,6 +1,7 @@
 const User=require('../model/User')
 const secret=require('../config/dataconfig').secret
 const jwt= require('jsonwebtoken');
+const Booking=require("../model/Booking")
 // const Bcrypt=require('bcrypt')
 
 var functionU={

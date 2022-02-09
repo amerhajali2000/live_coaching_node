@@ -15,11 +15,7 @@ const CategorySchema =  mongoose.Schema({
     data:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"data"
-    }],
-    location:{
-        latitude:Number,
-        longitude:Number
-    }
+    }]
 })
 
 
