@@ -18,7 +18,7 @@ const DataSchema =  mongoose.Schema({
         url:String,
         cvId:String
     },
-    dates:[{
+    times:[{
         type:String
     }],
     category:{

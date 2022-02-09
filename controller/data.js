@@ -16,7 +16,7 @@ var functiond={
                 },
                 description:req.body.description,
                 category:req.body.category,
-                dates:req.body.dates
+                times:req.body.times
             })
             data.save(function(err,result) {
                 if(err){
