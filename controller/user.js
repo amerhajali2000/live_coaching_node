@@ -17,7 +17,8 @@ var functionU={
                     email:req.body.email,
                     phone:req.body.phone,
                     password:req.body.password
-                }).save(function(err){
+                })
+                user.save(async(err)=>{
                      if(err){
                         res.json({secssus:false,msg:err.message})
                      }else{
@@ -29,7 +30,8 @@ var functionU={
                             },
                             secret
                             )
-                        res.json({secssus:true,msg:'تم تسجيل الحساب', token:token, id:user._id})
+                            User.findOne({email:req.body.email}, function(err, user){
+                                res.json({secssus:true,'id':user._id, token:token})})
                      }
         
                  })
@@ -57,7 +59,7 @@ var functionU={
                     secret
                     )
                User.findOne({email:req.body.email}, function(err, user){
-                   res.json({secssus:true,'name': user.name,'email':req.body.email,'id':user.id, token:token})
+                   res.json({secssus:true,'name': user.name,'email':req.body.email,'id':user._id, token:token})
                })
             }
         })
