@@ -28,5 +28,7 @@ const upload = multer({
 
 router.post("/addData",upload.single("image"), dataController.addData)
 router.get("/getData/:id",dataController.getData)
+router.delete("/deleteData",dataController.deleteData)
+router.put("/updateData", upload.single("image"), dataController.updateData)
 
 module.exports=router

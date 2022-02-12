@@ -39,6 +39,39 @@ var functiond={
                 res.json({seccuss:false, msg:"لا يوجد بيانات مخزنة في هذا القسم"})
             }
         })
+    },
+    updateData:async(req,res)=>{
+        const data= await Data.findOne({_id:req.body.id}).exec()
+        if(data.cv!=null){
+            var result= await cloudinary.uploader.destroy(data.cv.cvId)
+        }
+        var newresult= await cloudinary.uploader.upload(req.file.path)
+        var update={
+            name:req.body.name,
+            email:req.body.email,
+            phone:req.body.phone,
+            cv:{
+                url:newresult.secure_url,
+                cvId:newresult.public_id
+            },
+            description:req.body.description
+        }
+        Data.findOneAndUpdate({_id:req.body.id},{update}).exec(function (err) {
+            if(err){
+                res.json({seccuss:false,msg:err.message})
+            }else{
+                res.json({seccuss:true, msg:"تم تحديث المعلومات"})
+            }
+        })
+    },
+    deleteData:async(req,res)=>{
+        Data.findOneAndDelete({_id:req.params.id}).exec(function (err) {
+            if(err){
+                res.json({seccuss:false,msg:err.message})
+            }else{
+                res.json({seccuss:true, msg:"تم الحذف"})
+            }
+        })
     }
 }
 
